@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {}
+  },
+  "projects": {
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "projectName": "SolidityAST",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

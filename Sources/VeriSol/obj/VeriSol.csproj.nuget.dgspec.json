@@ -1,0 +1,420 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {}
+  },
+  "projects": {
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+        "projectName": "BoogieAST",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectName": "ExternalToolsManager",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
+        "projectName": "SolToBoogie",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "projectName": "SolidityAST",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "projectName": "SolidityAnalysis",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {
+      "version": "0.1.1-alpha",
+      "restore": {
+        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
+        "projectName": "VeriSol",
+        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
+        "packagesPath": "/home/anissa/.nuget/packages/",
+        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anissa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj"
+              },
+              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
