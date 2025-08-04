@@ -1,0 +1,15 @@
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/bin/Debug/BoogieAST
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/bin/Debug/BoogieAST.deps.json
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/bin/Debug/BoogieAST.runtimeconfig.json
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/bin/Debug/BoogieAST.dll
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/bin/Debug/BoogieAST.pdb
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.csproj.AssemblyReference.cache
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.GeneratedMSBuildEditorConfig.editorconfig
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.AssemblyInfoInputs.cache
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.AssemblyInfo.cs
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.csproj.CoreCompileInputs.cache
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.dll
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/refint/BoogieAST.dll
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.pdb
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/BoogieAST.genruntimeconfig.cache
+/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/Debug/ref/BoogieAST.dll

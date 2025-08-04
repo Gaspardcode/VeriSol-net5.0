@@ -14,24 +14,13 @@ namespace SolToBoogie
     public static class ParseUtils
     {
         // TODO: extract into a VerificationFlags structure 
-        public static void ParseCommandLineArgs(string[] args, out string solidityFile, out string entryPointContractName, out bool tryProofFlag, out bool tryRefutation, out int recursionBound, out ILogger logger, out HashSet<Tuple<string, string>> ignoredMethods, out bool printTransactionSeq, ref TranslatorFlags translatorFlags)
+        public static void ParseCommandLineArgs(string[] args, out string solidityFile, out string entryPointContractName, out ILogger logger, out HashSet<Tuple<string, string>> ignoredMethods, ref TranslatorFlags translatorFlags)
         {
             //Console.WriteLine($"Command line args = {{{string.Join(", ", args.ToList())}}}");
             solidityFile = args[0];
             // Debug.Assert(!solidityFile.Contains("/"), $"Illegal solidity file name {solidityFile}"); //the file name can be foo/bar/baz.sol
             entryPointContractName = args[1];
             Debug.Assert(!entryPointContractName.Contains("/"), $"Illegal contract name {entryPointContractName}");
-
-            tryProofFlag = !(args.Any(x => x.Equals("/noPrf")) || args.Any(x => x.Equals("/noChk"))); //args.Any(x => x.Equals("/tryProof"));
-            tryRefutation = !args.Any(x => x.Equals("/noChk"));
-            recursionBound = 4;
-            var txBounds = args.Where(x => x.StartsWith("/txBound:"));
-            if (txBounds.Count() > 0)
-            {
-                Debug.Assert(txBounds.Count() == 1, $"At most 1 /txBound:k expected, found {txBounds.Count()}");
-                recursionBound = int.Parse(txBounds.First().Substring("/txBound:".Length));
-                Debug.Assert(recursionBound > 0, $"Argument of /txBound:k should be positive, found {recursionBound}");
-            }
 
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole()); //  new LoggerFactory().AddConsole(LogLevel.Information);
             logger = loggerFactory.CreateLogger("VeriSol");
@@ -65,8 +54,6 @@ namespace SolToBoogie
             if (args.Any(x => x.Equals("/noInlineAttrs")))
             {
                 translatorFlags.GenerateInlineAttributes = false;
-                if (tryProofFlag)
-                    throw new Exception("/noInlineAttrs cannot be used when /tryProof is used");
             }
             if (args.Any(x => x.Equals("/break")))
             {
@@ -125,131 +112,11 @@ namespace SolToBoogie
             var stubModels = args.Where(x => x.StartsWith("/stubModel:"));
             if (stubModels.Count() > 0)
             {
-                Debug.Assert(stubModels.Count() == 1, "Multiple instances of /stubModel:");
-                var model = stubModels.First().Substring("/stubModel:".Length);
-                Debug.Assert(model.Equals("skip") || model.Equals("havoc") || model.Equals("callback") || model.Equals("multipleCallbacks"),
-                    $"The argument to /stubModel: can be either {{skip, havoc, callback, multipleCallbacks}}, found {model}");
-                translatorFlags.ModelOfStubs = model;
+                Debug.Assert(stubModels.Count() == 1, $"At most 1 /stubModel:s expected, found {stubModels.Count()}");
+                var stubModel = stubModels.First().Substring("/stubModel:".Length);
+                Debug.Assert(stubModel.Equals("skip") || stubModel.Equals("havoc") || stubModel.Equals("callback"), $"Argument of /stubModel:s should be skip, havoc, or callback, found {stubModel}");
+                translatorFlags.ModelOfStubs = stubModel;
             }
-            if (args.Any(x => x.StartsWith("/inlineDepth:")))
-            {
-                var depth = args.Where(x => x.StartsWith("/inlineDepth:")).First();
-                translatorFlags.InlineDepthForBoogie = int.Parse(depth.Substring("/inlineDepth:".Length));
-            }
-            if (args.Any(x => x.Equals("/doModSet")))
-            {
-                translatorFlags.DoModSetAnalysis = true;
-            }
-            if (args.Any(x => x.Equals("/removeScopeInVarName")))
-            {
-                // do not document this option, only needed for equivalence checking in Symdiff
-                translatorFlags.RemoveScopeInVarName = true;
-            }
-
-            if (args.Any(x => x.Equals("/LazyNestedAlloc")))
-            {
-                translatorFlags.LazyNestedAlloc = true;
-            }
-
-            if (args.Any(x => x.Equals("/LazyAllocNoMod")))
-            {
-                translatorFlags.LazyNestedAlloc = true;
-                translatorFlags.LazyAllocNoMod = true;
-                translatorFlags.QuantFreeAllocs = true;
-            }
-
-            if (args.Any(x => x.Equals("/OmitAssumeFalseForDynDispatch")))
-            {
-                translatorFlags.OmitAssumeFalseForDynDispatch = true;
-            }
-
-            if (args.Any(x => x.Equals("/QuantFreeAllocs")))
-            {
-                translatorFlags.QuantFreeAllocs = true;
-                
-                // Turn LazyNestedAlloc on by default if QuantFreeAllocs is provided.
-                if (!translatorFlags.LazyNestedAlloc)
-                    translatorFlags.LazyNestedAlloc = true;
-            }
-
-            if (args.Any(x => x.Equals("/allowTxnsFromContract")))
-            {
-                translatorFlags.NoTxnsFromContract = false;
-            }
-
-            if (args.Any(x => x.Equals("/instrumentSums")))
-            {
-                translatorFlags.InstrumentSums = true;
-            }
-
-            if (args.Any(x => x.Equals("/alias")))
-            {
-                translatorFlags.RunAliasAnalysis = true;
-            }
-            
-            if (args.Any(x => x.Equals("/useMultiDim")))
-            {
-                translatorFlags.RunAliasAnalysis = true;
-                translatorFlags.UseMultiDim = true;
-            }
-
-            if (args.Any(x => x.Equals("/txnsOnFields")))
-            {
-                translatorFlags.TxnsOnFields = true;
-            }
-
-            if (args.Any(x => x.Equals("/noNonlinearArith")))
-            {
-                translatorFlags.NoNonlinearArith = true;
-            }
-
-            if (args.Any(x => x.Equals("/useNumericOperators")))
-            {
-                translatorFlags.UseNumericOperators = true;
-                BoogieBinaryOperation.USE_ARITH_OPS = true;
-            }
-
-            if (args.Any(x => x.Equals("/prePostHarness")))
-            {
-                translatorFlags.PrePostHarness = true;
-            }
-
-            if (args.Any(x => x.Equals("/generateGetters")))
-            {
-                translatorFlags.GenerateGetters = true;
-            }
-
-            if (args.Any(x => x.Equals("/generateERC20Spec")))
-            {
-                translatorFlags.GenerateERC20Spec = true;
-            }
-
-            if (args.Any(x => x.Equals("/modelAssemblyAsHavoc")))
-            {
-                translatorFlags.AssemblyAsHavoc = true;
-            }
-
-            translatorFlags.PerformContractInferce = args.Any(x => x.StartsWith("/contractInfer"));
-
-            // don't perform verification for some of these omitFlags
-            if (tryProofFlag || tryRefutation)
-            {
-                Debug.Assert(!translatorFlags.NoHarness &&
-                    !translatorFlags.NoAxiomsFlag &&
-                    !translatorFlags.NoUnsignedAssumesFlag &&
-                    !translatorFlags.NoDataValuesInfoFlag &&
-                    !translatorFlags.NoSourceLineInfoFlag &&
-                    !translatorFlags.RemoveScopeInVarName,
-                    "Cannot perform verification when any of " +
-                    "/omitSourceLineInfo, " +
-                    "/omitDataValuesInTrace, " +
-                    "/omitAxioms, " +
-                    "/omitHarness, " +
-                    "/omitUnsignedSemantics, " +
-                    "/removeScopeInVarName are specified");
-            }
-
-            printTransactionSeq = !args.Any(x => x.Equals("/noTxSeq"));
         }
 
     }

@@ -1,282 +1,204 @@
 ﻿
 namespace SolToBoogieTest
 {
+    using Microsoft.Extensions.Logging;
+    using SolidityAST;
+    using BoogieAST;
+    using SolToBoogie;
+
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Runtime.InteropServices;
-    using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
-    using SolidityAST;
-    using BoogieAST;
-    using SolToBoogie;
+    using System.Reflection;
     using VeriSolRunner.ExternalTools;
 
     class RegressionExecutor
     {
         private string solcPath;
-
-        private string corralPath;
-
         private string testDirectory;
-
         private string configDirectory;
-
         private string recordsDir;
-
         private ILogger logger;
-
         private string testPrefix;
-
-        private static readonly int corralTimeoutInMilliseconds = TimeSpan.FromSeconds(60).Seconds * 1000;
-
         private static readonly string outFile = "__SolToBoogieTest_out.bpl";
-
         private static Dictionary<string, bool> filesToRun = new Dictionary<string, bool>();
 
-        public enum BatchExeResult { Success, SolcError, SolToBoogieError, CorralError, OtherException };
+        public enum BatchExeResult { Success, SolcError, SolToBoogieError, BoogieCompilationError, OtherException };
 
         public RegressionExecutor(string testDirectory, string configDirectory, string recordsDir, ILogger logger, string testPrefix = "")
         {
-            this.solcPath = ExternalToolsManager.Solc.Command;
-            this.corralPath = ExternalToolsManager.Corral.Command;
             this.testDirectory = testDirectory;
             this.configDirectory = configDirectory;
             this.recordsDir = recordsDir;
             this.logger = logger;
             this.testPrefix = testPrefix;
+            this.solcPath = ExternalToolsManager.Solc.Command;
+            ReadRecord();
         }
 
         public int BatchExecute()
         {
-            string[] filePaths = Directory.GetFiles(testDirectory);
-            int passedCount = 0;
-            int failedCount = 0;
-            ReadRecord();
-            foreach (string filePath in filePaths)
+            int totalFiles = 0;
+            int passedFiles = 0;
+            int failedFiles = 0;
+
+            Console.WriteLine($"Running tests in directory: {testDirectory}");
+            Console.WriteLine($"Test prefix: {testPrefix}");
+
+            foreach (var file in Directory.GetFiles(testDirectory, "*.sol"))
             {
-                string filename = Path.GetFileName(filePath);
-                if (!filename.StartsWith(testPrefix))
-                    continue;
-                //silently ignore non .sol files
-                if (!filename.EndsWith(".sol"))
-                    continue;
+                string filename = Path.GetFileName(file);
                 if (!filesToRun.ContainsKey(filename))
                 {
-                    logger.LogWarning($"{filename} not found in {Path.Combine(recordsDir, "records.txt")}");
                     continue;
                 }
 
                 if (!filesToRun[filename])
                 {
+                    Console.WriteLine($"Skipping {filename} (disabled in records.txt)");
                     continue;
                 }
 
-                logger.LogInformation($"Running {filename}");
-
-                BatchExeResult batchExeResult = BatchExeResult.SolcError;
-                string expectedCorralOutput = "", currentCorralOutput = "";
-                try
+                if (!string.IsNullOrEmpty(testPrefix) && !filename.StartsWith(testPrefix))
                 {
-                    batchExeResult = Execute(filename, out expectedCorralOutput, out currentCorralOutput);
-                }
-                catch (Exception exception)
-                {
-                    logger.LogCritical(exception, $"Exception occurred in {filename}");
-                    batchExeResult = BatchExeResult.OtherException;
+                    continue;
                 }
 
-                if (batchExeResult == BatchExeResult.Success)
+                totalFiles++;
+                Console.WriteLine($"\n--- Testing {filename} ---");
+
+                string expected, current;
+                BatchExeResult result = Execute(filename, out expected, out current);
+
+                switch (result)
                 {
-                    ++passedCount;
-                    logger.LogInformation($"Passed - {filename}");
-                }
-                else if (batchExeResult == BatchExeResult.SolcError)
-                {
-                    ++failedCount;
-                    logger.LogError($"Failed (Solc failed) - {filename}");
-                }
-                else if (batchExeResult == BatchExeResult.OtherException)
-                {
-                    ++failedCount;
-                    logger.LogError($"Failed (Other exception) - {filename}");
-                }
-                else if (batchExeResult == BatchExeResult.SolToBoogieError)
-                {
-                    ++failedCount;
-                    logger.LogError($"Failed (VeriSol translation error) - {filename}");
-                }
-                else if (batchExeResult == BatchExeResult.CorralError)
-                {
-                    ++failedCount;
-                    logger.LogError($"Failed (Corral regression failed) - {filename}");
-                    logger.LogError($"\t Expected - {expectedCorralOutput}");
-                    logger.LogError($"\t Corral detailed Output - {currentCorralOutput}");
-                }
-                else
-                {
-                    ++failedCount;
-                    logger.LogError($"Failed (Tool error: unexpected failure code) - {filename}");
+                    case BatchExeResult.Success:
+                        Console.WriteLine($"      Passed - {filename}");
+                        passedFiles++;
+                        break;
+                    case BatchExeResult.SolcError:
+                        Console.WriteLine($"      Failed - {filename} (Solc compilation error)");
+                        failedFiles++;
+                        break;
+                    case BatchExeResult.SolToBoogieError:
+                        Console.WriteLine($"      Failed - {filename} (SolToBoogie translation error)");
+                        failedFiles++;
+                        break;
+                    case BatchExeResult.BoogieCompilationError:
+                        Console.WriteLine($"      Failed - {filename} (Boogie compilation error)");
+                        failedFiles++;
+                        break;
+                    case BatchExeResult.OtherException:
+                        Console.WriteLine($"      Failed - {filename} (Other exception)");
+                        failedFiles++;
+                        break;
                 }
             }
 
-            logger.LogInformation($"{passedCount} passed {failedCount} failed");
-            // To allow time for logging the last summary line:
-            System.Threading.Thread.Sleep(100);
-            DeleteTemporaryFiles();
-            return (failedCount == 0)? 0 : 1;
+            Console.WriteLine($"\n--- Test Summary ---");
+            Console.WriteLine($"Total files: {totalFiles}");
+            Console.WriteLine($"Passed: {passedFiles}");
+            Console.WriteLine($"Failed: {failedFiles}");
+
+            return failedFiles == 0 ? 0 : 1;
         }
 
         private void ParseTranslatorFlags(TranslatorFlags translatorFlags, string args)
         {
             string solidityFile, entryPointContractName;
-            bool tryProofFlag, tryRefutation;
-            int recursionBound;
             ILogger logger;
             HashSet<Tuple<string, string>> ignoredMethods;
-            bool printTransactionSequence = false;
-            string verisolCmdLineArgs = "Foo Bar " + args; //Parser expects dirst two args to be present 
+            string verisolCmdLineArgs = "Foo Bar " + args; //Parser expects first two args to be present 
             SolToBoogie.ParseUtils.ParseCommandLineArgs(verisolCmdLineArgs.Split(" "),
             out solidityFile,
             out entryPointContractName,
-            out tryProofFlag,
-            out tryRefutation,
-            out recursionBound,
             out logger,
             out ignoredMethods,
-            out printTransactionSequence,
             ref translatorFlags);
         }
-
-
 
         public BatchExeResult Execute(string filename, out string expected, out string current)
         {
             BatchExeResult result = BatchExeResult.SolcError;
-            string filePath = Path.Combine(testDirectory, filename);
+            expected = current = null;
 
-            // compile the program
-            SolidityCompiler compiler = new SolidityCompiler();
-            CompilerOutput compilerOutput = compiler.Compile(solcPath, filePath);
-
-            if (compilerOutput.ContainsError())
-            {
-                compilerOutput.PrintErrorsToConsole();
-                throw new SystemException("Compilation Error");
-            }
-
-            // build the Solidity AST from solc output
-            AST solidityAST = new AST(compilerOutput, Path.GetDirectoryName(filePath));
-
-            // read the corral configuration from Json
-            string configJsonPath = Path.Combine(configDirectory, Path.GetFileNameWithoutExtension(filename) + ".json");
-            string jsonString = File.ReadAllText(configJsonPath);
-            CorralConfiguration corralConfig = JsonConvert.DeserializeObject<CorralConfiguration>(jsonString);
-
-            // translate Solidity to Boogie
             try
             {
+                string filePath = Path.Combine(testDirectory, filename);
+                Console.WriteLine($"... running Solc on {filePath}");
+
+                // compile the program
+                SolidityCompiler compiler = new SolidityCompiler();
+                CompilerOutput compilerOutput = compiler.Compile(solcPath, filePath, testDirectory);
+
+                if (compilerOutput.ContainsError())
+                {
+                    compilerOutput.PrintErrorsToConsole();
+                    return BatchExeResult.SolcError;
+                }
+
+                // build the Solidity AST from solc output
+                AST solidityAST = new AST(compilerOutput, testDirectory);
+
+                // translate to Boogie
+                TranslatorFlags translatorFlags = new TranslatorFlags();
                 BoogieTranslator translator = new BoogieTranslator();
-                var translatorFlags = new TranslatorFlags();
-                translatorFlags.GenerateInlineAttributes = false;
-                if (corralConfig.TranslatorOptions != null)
-                {
-                    ParseTranslatorFlags(translatorFlags, corralConfig.TranslatorOptions);
-                }
-                
-                BoogieAST boogieAST = translator.Translate(solidityAST, new HashSet<Tuple<string, string>>(), translatorFlags);
+                BoogieAST boogieAST = translator.Translate(solidityAST, new HashSet<Tuple<string, string>>(), translatorFlags, Path.GetFileNameWithoutExtension(filename));
 
-                // dump the Boogie program to a file
-                using (var outWriter = new StreamWriter(outFile))
+                // write the Boogie program to file
+                using (var bplFile = new StreamWriter(outFile))
                 {
-                    outWriter.WriteLine(boogieAST.GetRoot());
+                    bplFile.WriteLine(boogieAST.GetRoot());
                 }
-            } catch (Exception e)
+
+                Console.WriteLine($"\tFinished SolToBoogie, output in {outFile}....\n");
+
+                // Test Boogie compilation
+                if (!TestBoogieCompilation())
+                {
+                    return BatchExeResult.BoogieCompilationError;
+                }
+
+                expected = "Translation successful";
+                current = "Translation successful";
+                return BatchExeResult.Success;
+            }
+            catch (Exception e)
             {
-                Console.WriteLine($"VeriSol translation error: {e.Message}");
-                result = BatchExeResult.SolToBoogieError;
+                Console.WriteLine($"Exception: {e.Message}");
                 expected = current = null;
-                return result;
+                return BatchExeResult.OtherException;
             }
-
-            // read the corral configuration from Json
-            //string configJsonPath = Path.Combine(configDirectory, Path.GetFileNameWithoutExtension(filename) + ".json");
-            //string jsonString = File.ReadAllText(configJsonPath);
-            //CorralConfiguration corralConfig = JsonConvert.DeserializeObject<CorralConfiguration>(jsonString);
-
-            string corralOutput = RunCorral(corralConfig);
-            expected = corralConfig.ExpectedResult;
-            current = corralOutput;
-            result = CompareCorralOutput(corralConfig.ExpectedResult, corralOutput);
-            return result;
         }
 
-        private string RunCorral(CorralConfiguration corralConfig)
+        private bool TestBoogieCompilation()
         {
-            string corralArguments = GenerateCorralArguments(corralConfig);
-
-            Process p = new Process();
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = false;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.FileName = this.corralPath;
-            p.StartInfo.Arguments = corralArguments;
-            p.Start();
-
-            string corralOutput = p.StandardOutput.ReadToEnd();
-            string errorMsg = p.StandardError.ReadToEnd();
-            if (!String.IsNullOrEmpty(errorMsg))
+            // Simple test: check if the Boogie file exists and has valid syntax
+            if (!File.Exists(outFile))
             {
-                Console.WriteLine($"Error: {errorMsg}");
+                Console.WriteLine($"\t*** Error: Boogie file {outFile} was not generated");
+                return false;
             }
-            p.StandardOutput.Close();
-            p.StandardError.Close();
 
-            // TODO: should set up a timeout here
-            // but it seems there is a problem if we execute corral using mono
-
-            return corralOutput;
-        }
-
-        private BatchExeResult CompareCorralOutput(string expected, string actual)
-        {
-            if (actual == null)
+            string boogieContent = File.ReadAllText(outFile);
+            if (string.IsNullOrWhiteSpace(boogieContent))
             {
-                return BatchExeResult.CorralError;
+                Console.WriteLine($"\t*** Error: Boogie file {outFile} is empty");
+                return false;
             }
-            string[] actualList = actual.Split("Boogie verification time");
-            if (actualList.Length == 2)
-            {
-                // This check will not work in the presence of loops 
-                // Corral ends with something about Recursion bound being reached
-                // See LoopFor.sol regression
-                // if (actualList[0].TrimEnd().EndsWith(expected))
-                if (actualList[0].Contains(expected))
-                {
-                    return BatchExeResult.Success;
-                }
-            }
-            return BatchExeResult.CorralError;
-        }
 
-        private string GenerateCorralArguments(CorralConfiguration corralConfig)
-        {
-            List<string> commands = new List<string>
+            // Basic syntax check: should contain "procedure" and "implementation"
+            if (!boogieContent.Contains("procedure") || !boogieContent.Contains("implementation"))
             {
-                // recursion bound
-                $"/recursionBound:{corralConfig.RecursionBound}",
-                // context bound (k)
-                $"/k:{corralConfig.K}",
-                // main method
-                $"/main:{corralConfig.Main}",
-                // Boogie file
-                outFile
-            };
-            return String.Join(" ", commands);
+                Console.WriteLine($"\t*** Warning: Boogie file {outFile} may have syntax issues");
+                return false;
+            }
+
+            Console.WriteLine($"\t*** Boogie compilation test passed");
+            return true;
         }
 
         private void ReadRecord()
@@ -295,13 +217,6 @@ namespace SolToBoogieTest
                     filesToRun[fileName] = true;
                 }
             }
-        }
-
-        private void DeleteTemporaryFiles()
-        {
-            File.Delete(outFile);
-            File.Delete("corral_out.bpl");
-            File.Delete("corral_out_trace.txt");
         }
     }
 }

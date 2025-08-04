@@ -14,6 +14,11 @@ namespace SolidityAST
 
         public CompilerOutput Compile(string solcPath, string derivedFilePath)
         {
+            return Compile(solcPath, derivedFilePath, Path.GetDirectoryName(derivedFilePath));
+        }
+
+        public CompilerOutput Compile(string solcPath, string derivedFilePath, string workingDirectory)
+        {
             if (!File.Exists(solcPath))
             {
                 throw new SystemException($"Cannot find solidity compiler at {solcPath}");
@@ -21,7 +26,7 @@ namespace SolidityAST
 
             derivedFilePath = derivedFilePath.Replace("\\", "/" /*, StringComparison.CurrentCulture*/);
             Console.WriteLine(solcPath);
-            string jsonString = RunSolc(solcPath, derivedFilePath);
+            string jsonString = RunSolc(solcPath, derivedFilePath, workingDirectory);
 
             List<string> errors = new List<string>();
             var settings = new JsonSerializerSettings
@@ -47,25 +52,24 @@ namespace SolidityAST
         /// <param name="solcPath"></param>
         /// <param name="derivedFilePath">Path to the top-level solidty file</param>
         /// <returns></returns>
-        private string RunSolc(string solcPath, string derivedFilePath)
+        private string RunSolc(string solcPath, string derivedFilePath, string workingDirectory)
         {
             string derivedFileName = Path.GetFileName(derivedFilePath);
-            string containingDirectory = Path.GetDirectoryName(derivedFilePath);
             Process p = new Process();
             p.StartInfo.UseShellExecute = false;
-            p.StartInfo.WorkingDirectory = containingDirectory;
+            p.StartInfo.WorkingDirectory = workingDirectory;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.FileName = solcPath;
-            p.StartInfo.Arguments = $"--standard-json --allow-paths {containingDirectory}";
+            p.StartInfo.Arguments = $"--standard-json --allow-paths {Path.GetFullPath(workingDirectory)}";
             p.Start();
 
             string configString = "{ \"language\": \"Solidity\", \"sources\": { %SOLPLACEHOLDER%: { \"urls\": [ %URLPLACEHOLDER% ]}},"
                 + "\"settings\": {\"evmVersion\": \"constantinople\", \"outputSelection\": {\"*\": {\"\": [ \"ast\" ]}}}}";
             configString = configString.Replace("%SOLPLACEHOLDER%", "\"" + derivedFileName + "\"" /*, StringComparison.CurrentCulture*/);
-            configString = configString.Replace("%URLPLACEHOLDER%", "\"" + derivedFilePath + "\""/*, StringComparison.CurrentCulture*/);
+            configString = configString.Replace("%URLPLACEHOLDER%", "\"" + Path.GetFullPath(derivedFilePath) + "\""/*, StringComparison.CurrentCulture*/);
 
             p.StandardInput.Write(configString);
             p.StandardInput.Close();

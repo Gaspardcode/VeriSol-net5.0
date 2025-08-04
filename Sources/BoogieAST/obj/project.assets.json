@@ -1,36 +1,36 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net6.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net6.0": []
   },
   "packageFolders": {
-    "/home/anissa/.nuget/packages/": {}
+    "/home/g_code/.nuget/packages/": {}
   },
   "project": {
     "version": "0.1.1-alpha",
     "restore": {
-      "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+      "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
       "projectName": "BoogieAST",
-      "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
-      "packagesPath": "/home/anissa/.nuget/packages/",
-      "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/obj/",
+      "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+      "packagesPath": "/home/g_code/.nuget/packages/",
+      "outputPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/anissa/.nuget/NuGet/NuGet.Config"
+        "/home/g_code/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net6.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -41,15 +41,16 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "imports": [
           "net461",
           "net462",
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -58,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {}
+    "/home/g_code/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {}
   },
   "projects": {
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
         "projectName": "BoogieAST",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -35,15 +35,16 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -52,31 +53,31 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
         "projectName": "ExternalToolsManager",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -87,8 +88,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -121,7 +122,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -130,40 +132,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
         "projectName": "SolToBoogie",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj"
               }
             }
           }
@@ -175,15 +177,16 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -192,31 +195,31 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
         "projectName": "SolidityAST",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -227,8 +230,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "JsonSubTypes": {
               "target": "Package",
@@ -253,7 +256,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -262,37 +266,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
         "projectName": "SolidityAnalysis",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAnalysis/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/SolidityAnalysis.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAnalysis/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
               }
             }
           }
@@ -304,15 +308,16 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -321,43 +326,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {
+    "/home/g_code/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj": {
       "version": "0.1.1-alpha",
       "restore": {
-        "projectUniqueName": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
+        "projectUniqueName": "/home/g_code/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
         "projectName": "VeriSol",
-        "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
-        "packagesPath": "/home/anissa/.nuget/packages/",
-        "outputPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/VeriSol/obj/",
+        "projectPath": "/home/g_code/VeriSol-net5.0/Sources/VeriSol/VeriSol.csproj",
+        "packagesPath": "/home/g_code/.nuget/packages/",
+        "outputPath": "/home/g_code/VeriSol-net5.0/Sources/VeriSol/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/anissa/.nuget/NuGet/NuGet.Config"
+          "/home/g_code/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/ExternalToolsManager/ExternalToolsManager.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolToBoogie/SolToBoogie.csproj"
               },
-              "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
-                "projectPath": "/home/anissa/Documents/Tools/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
+              "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj": {
+                "projectPath": "/home/g_code/VeriSol-net5.0/Sources/SolidityAST/SolidityAST.csproj"
               }
             }
           }
@@ -369,8 +374,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -403,7 +408,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -412,7 +418,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/anissa/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     }
