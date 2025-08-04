@@ -17,7 +17,22 @@ namespace VeriSolRunner.ExternalTools
         private static string GetDefaultPath()
         {
             var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(ToolSourceSettings)).Location);
-            return assemblyPath.Split(new string[] { @".store" }, StringSplitOptions.None)[0];
+            if (assemblyPath == null)
+            {
+                // Fallback to current directory if assembly path is null
+                return Directory.GetCurrentDirectory();
+            }
+            
+            // Check if the path contains .store
+            if (assemblyPath.Contains(".store"))
+            {
+                return assemblyPath.Split(new string[] { @".store" }, StringSplitOptions.None)[0];
+            }
+            else
+            {
+                // If no .store, just use the assembly directory
+                return assemblyPath;
+            }
         }
     }
 }

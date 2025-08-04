@@ -29,6 +29,11 @@
         {
             get
             {
+                if (this.settings?.Name == null)
+                {
+                    return "solc";
+                }
+                
                 if (OsName == "windows")
                 {
                    return this.settings.Name + ".exe";
@@ -44,6 +49,11 @@
         {
             get
             {
+                if (this.settings?.CommandPath == null)
+                {
+                    return "solc";
+                }
+                
                 return Path.Combine(this.settings.CommandPath, this.ExeName);
             }
         }
@@ -62,7 +72,7 @@
 
         protected void EnsureCommandPathExisted()
         {
-            if (!Directory.Exists(this.settings.CommandPath))
+            if (this.settings?.CommandPath != null && !Directory.Exists(this.settings.CommandPath))
             {
                 Directory.CreateDirectory(this.settings.CommandPath);
             }

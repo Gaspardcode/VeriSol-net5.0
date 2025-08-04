@@ -10,9 +10,6 @@ namespace VeriSolRunner.ExternalTools
         private static ILogger logger;
 
         public static ToolManager Solc { get; private set; }
-        public static ToolManager Z3 { get; private set; }
-        public static ToolManager Boogie { get; private set; }
-        public static ToolManager Corral { get; private set; }
 
         static ExternalToolsManager()
         {
@@ -25,19 +22,11 @@ namespace VeriSolRunner.ExternalTools
 
             var solcSourceSettings = new ToolSourceSettings();
             toolSourceConfig.GetSection("solc").Bind(solcSourceSettings);
+            
+            // Debug output
+            Console.WriteLine($"Solc settings - Name: {solcSourceSettings.Name}, CommandPath: {solcSourceSettings.CommandPath}");
+            
             Solc = new SolcManager(solcSourceSettings);
-
-            var z3SourceSettings = new ToolSourceSettings();
-            toolSourceConfig.GetSection("z3").Bind(z3SourceSettings);
-            Z3 = new DownloadedToolManager(z3SourceSettings);
-
-            var boogieSourceSettings = new ToolSourceSettings();
-            toolSourceConfig.GetSection("boogie").Bind(boogieSourceSettings);
-            Boogie = new DotnetCliToolManager(boogieSourceSettings);
-
-            var corralSourceSettings = new ToolSourceSettings();
-            toolSourceConfig.GetSection("corral").Bind(corralSourceSettings);
-            Corral = new DotnetCliToolManager(corralSourceSettings);
         }
 
         internal static void Log(string v)
@@ -48,14 +37,6 @@ namespace VeriSolRunner.ExternalTools
         public static void EnsureAllExisted()
         {
             Solc.EnsureExisted();
-
-            Z3.EnsureExisted();
-
-            Boogie.EnsureExisted();
-            (Boogie as DotnetCliToolManager).EnsureLinkedToZ3(Z3);
-
-            Corral.EnsureExisted();
-            (Corral as DotnetCliToolManager).EnsureLinkedToZ3(Z3);
         }
     }
 }
