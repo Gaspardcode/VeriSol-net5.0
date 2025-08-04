@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net9.0": {
       "JsonSubTypes/2.0.1": {
         "type": "package",
         "dependencies": {
@@ -397,7 +397,7 @@
       },
       "BoogieAST/0.1.1-alpha": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
           "bin/placeholder/BoogieAST.dll": {}
         },
@@ -407,7 +407,7 @@
       },
       "ExternalToolsManager/0.1.1-alpha": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": "6.0.1",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0",
@@ -425,7 +425,7 @@
       },
       "SolidityAnalysis/0.1.1-alpha": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "BoogieAST": "0.1.1-alpha",
           "SolidityAST": "0.1.1-alpha"
@@ -439,7 +439,7 @@
       },
       "SolidityAST/0.1.1-alpha": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "JsonSubTypes": "2.0.1",
           "Microsoft.Extensions.Logging": "5.0.0",
@@ -455,7 +455,7 @@
       },
       "SolToBoogie/0.1.1-alpha": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "BoogieAST": "0.1.1-alpha",
           "SolidityAST": "0.1.1-alpha",
@@ -1012,7 +1012,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net9.0": [
       "BoogieAST >= 0.1.1-alpha",
       "ExternalToolsManager >= 0.1.1-alpha",
       "Microsoft.Extensions.Configuration >= 6.0.1",
@@ -1041,14 +1041,14 @@
         "/home/g_code/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net9.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "projectReferences": {
             "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj": {
               "projectPath": "/home/g_code/VeriSol-net5.0/Sources/BoogieAST/BoogieAST.csproj"
@@ -1069,11 +1069,17 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net9.0": {
+        "targetAlias": "net9.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
@@ -1116,7 +1122,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/g_code/.dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

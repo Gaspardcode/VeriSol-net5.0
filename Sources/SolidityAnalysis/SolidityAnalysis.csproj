@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <HighEntropyVA>true</HighEntropyVA>
     <ApplicationIcon />
     <StartupObject />
