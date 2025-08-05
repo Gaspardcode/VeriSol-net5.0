@@ -32,7 +32,7 @@ namespace SolToBoogieTest
 
         private static readonly int corralTimeoutInMilliseconds = TimeSpan.FromSeconds(60).Seconds * 1000;
 
-        private static readonly string outFile = "__SolToBoogieTest_out.bpl";
+        static string outFile = "__SolToBoogieTest_out.bpl";
 
         private static Dictionary<string, bool> filesToRun = new Dictionary<string, bool>();
 
@@ -189,7 +189,7 @@ namespace SolToBoogieTest
                 BoogieAST boogieAST = translator.Translate(solidityAST, new HashSet<Tuple<string, string>>(), translatorFlags);
 
                 // dump the Boogie program to a file
-                using (var outWriter = new StreamWriter(outFile))
+                using (var outWriter = new StreamWriter($"tests/{filename}.bpl"))
                 {
                     outWriter.WriteLine(boogieAST.GetRoot());
                 }
