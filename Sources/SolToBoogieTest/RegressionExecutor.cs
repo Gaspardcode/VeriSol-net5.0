@@ -149,12 +149,12 @@ namespace SolToBoogieTest
                 BoogieAST boogieAST = translator.Translate(solidityAST, new HashSet<Tuple<string, string>>(), translatorFlags, Path.GetFileNameWithoutExtension(filename));
 
                 // write the Boogie program to file
-                using (var bplFile = new StreamWriter(outFile))
+                using (var bplFile = new StreamWriter($"{filename.Replace(".sol", "")}_{outFile}"))
                 {
                     bplFile.WriteLine(boogieAST.GetRoot());
                 }
 
-                Console.WriteLine($"\tFinished SolToBoogie, output in {outFile}....\n");
+                Console.WriteLine($"\tFinished SolToBoogie, output in {filename.Replace(".sol", "")}_{outFile}....\n");
 
                 // Test Boogie compilation
                 if (!TestBoogieCompilation())
