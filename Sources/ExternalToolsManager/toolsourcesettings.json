@@ -1,11 +1,11 @@
 {
   "solc": {
     "Name": "solc",
-    "Version": "0.5.10",
+    "Version": "0.4.23",
     "DownloadURLs": {
-      "windows": "https://github.com/ethereum/solidity/releases/download/v0.5.10/solidity-windows.zip",
-      "linux": "https://github.com/ethereum/solidity/releases/download/v0.5.10/solc-static-linux",
-      "osx": " /usr/local/Cellar/solidity/0.5.11/bin/solc"
+      "windows": "https://github.com/ethereum/solidity/releases/download/v0.4.23/solidity-windows.zip",
+      "linux": "https://github.com/ethereum/solidity/releases/download/v0.4.23/solc-static-linux",
+      "osx": " /usr/local/Cellar/solidity/0.4.23/bin/solc"
     },
     "ExePathsWithinZip": {
       "windows": "solc.exe",

@@ -7,63 +7,38 @@ namespace SolToBoogieTest
     using System.Runtime.InteropServices;
     using Microsoft.Extensions.Logging;
     using VeriSolRunner.ExternalTools;
+    using System.Collections.Generic;
 
     class Program
     {
-        public static int Main(string[] args)
+        static int Main(string[] args)
         {
-            if (args.Length < 1 || args.Length > 2)
+            if (args.Length > 0 && args[0] == "test-solidity05")
             {
-                Console.WriteLine("Usage: SolToBoogieTest <test-dir> [<test-prefix>]");
-                Console.WriteLine("\t: if <test-prefix> is specified, we only run subset of tests that have the string as prefix");
+                // Run Solidity 0.5.0 test suite
+                var testRunner = new Solidity05TestRunner();
+                testRunner.RunAllTests();
+                return 0;
+            }
+
+            // Original regression test logic
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Usage: dotnet run <testDirectory> <configDirectory> [testPrefix]");
+                Console.WriteLine("   or: dotnet run test-solidity05");
                 return 1;
             }
 
-            string testDir = args[0];
-            string testPrefix = args.Length >= 2 ? args[1] : "";
+            string testDirectory = args[0];
+            string configDirectory = args[1];
+            string testPrefix = args.Length > 2 ? args[2] : "";
 
-            ExternalToolsManager.EnsureAllExisted();
+            ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+            ILogger logger = loggerFactory.CreateLogger("VeriSol");
 
-            string regressionDir = Path.Combine(testDir, "regressions");
-            string configDir = Path.Combine(testDir, "config");
-            string recordsDir = Path.Combine(testDir);
-
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole()); // new LoggerFactory().AddConsole(LogLevel.Information);
-            ILogger logger = loggerFactory.CreateLogger("SolToBoogieTest.RegressionExecutor");
-
-            if (!testPrefix.Equals(string.Empty))
-            {
-                Console.WriteLine($"Warning!!! only running tests that have a prefix {testPrefix}....");
-            }
-            RegressionExecutor executor = new RegressionExecutor(regressionDir, configDir, recordsDir, logger, testPrefix);
+            RegressionExecutor executor = new RegressionExecutor(testDirectory, configDirectory, testDirectory, logger, testPrefix);
             return executor.BatchExecute();
         }
-
-        private static string GetCorralPathFromAssemblyPath(string location)
-        {
-            return Path.Combine(new string[] {Directory.GetParent(location).FullName, "corral.dll"});
-        }
-
-        private static string GetSolcNameByOSPlatform()
-        {
-            string solcName = null;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                solcName = "solc.exe";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                solcName = "solc-static-linux";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                solcName = "solc";
-            }
-            else
-            {
-                throw new SystemException("Cannot recognize OS platform");
-            }
-            return solcName;
-        }
+        
     }
 }

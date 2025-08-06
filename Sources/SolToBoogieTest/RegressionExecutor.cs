@@ -157,7 +157,7 @@ namespace SolToBoogieTest
                 Console.WriteLine($"\tFinished SolToBoogie, output in {filename.Replace(".sol", "")}_{outFile}....\n");
 
                 // Test Boogie compilation
-                if (!TestBoogieCompilation())
+                if (!TestBoogieCompilation(filename))
                 {
                     return BatchExeResult.BoogieCompilationError;
                 }
@@ -174,26 +174,27 @@ namespace SolToBoogieTest
             }
         }
 
-        private bool TestBoogieCompilation()
+        private bool TestBoogieCompilation(string filename)
         {
             // Simple test: check if the Boogie file exists and has valid syntax
-            if (!File.Exists(outFile))
+            string actualOutFile = $"{filename.Replace(".sol", "")}_{outFile}";
+            if (!File.Exists(actualOutFile))
             {
-                Console.WriteLine($"\t*** Error: Boogie file {outFile} was not generated");
+                Console.WriteLine($"\t*** Error: Boogie file {actualOutFile} was not generated");
                 return false;
             }
 
-            string boogieContent = File.ReadAllText(outFile);
+            string boogieContent = File.ReadAllText(actualOutFile);
             if (string.IsNullOrWhiteSpace(boogieContent))
             {
-                Console.WriteLine($"\t*** Error: Boogie file {outFile} is empty");
+                Console.WriteLine($"\t*** Error: Boogie file {actualOutFile} is empty");
                 return false;
             }
 
             // Basic syntax check: should contain "procedure" and "implementation"
             if (!boogieContent.Contains("procedure") || !boogieContent.Contains("implementation"))
             {
-                Console.WriteLine($"\t*** Warning: Boogie file {outFile} may have syntax issues");
+                Console.WriteLine($"\t*** Warning: Boogie file {actualOutFile} may have syntax issues");
                 return false;
             }
 
