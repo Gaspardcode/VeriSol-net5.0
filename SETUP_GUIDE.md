@@ -4,33 +4,29 @@
 
 ### 1. Environment Setup
 ```bash
+
+./scripts/dotnet-install.sh --runtime 8.0
+
 # Add .NET to PATH (add to ~/.bashrc for persistence)
 export PATH=$PATH:/home/g_code/.dotnet
 
 # Verify installation
 dotnet --version  # Should show 6.0.428
 ```
-
-### 2. Build the Project
+### 3. Build the Project
 ```bash
-# Navigate to project root
-cd /VeriSol-net5.0
 
 # Build the solution
 dotnet build Sources/VeriSol.sln
 ```
 
-### 3. Install External Tool Runtimes
-The external tools (Boogie, Corral) need .NET runtime:
-
-```bash
-# Install .NET runtime for external tools
-./dotnet-install.sh --runtime 8.0
-
-### 4. Test the Installation
+### 4. Test the build
 ```bash
 # Run the test script
 ./scripts/assert_software_is_working.sh
+
+```
+
 
 ## Architecture
 
