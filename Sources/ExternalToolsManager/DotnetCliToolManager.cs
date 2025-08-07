@@ -65,32 +65,5 @@ namespace VeriSolRunner.ExternalTools
             return output;
         }
 
-        internal void EnsureLinkedToZ3(ToolManager z3)
-        {
-            var z3DependencyPath = GetZ3DependencyPath(z3);
-
-            // Workaround: Boogie and Corral are looking for z3.exe, even on linux/mac
-            if (!z3DependencyPath.EndsWith(".exe"))
-            {
-                z3DependencyPath += ".exe";
-            }
-
-            if (!File.Exists(z3DependencyPath))
-            {
-                ExternalToolsManager.Log($"Z3 does not exist under {this.settings.Name}");
-                ExternalToolsManager.Log($"Copying {z3.Command} to {z3DependencyPath}");
-                File.Copy(z3.Command, z3DependencyPath);
-            }
-            else
-            {
-                ExternalToolsManager.Log($"Z3 already exists under {this.settings.Name}");
-                ExternalToolsManager.Log("Skip copying");
-            }
-        }
-
-        private string GetZ3DependencyPath(ToolManager z3)
-        {
-            return this.DependencyTargetPath + z3.ExeName;
-        }
     }
 }

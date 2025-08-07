@@ -122,7 +122,6 @@ namespace SolToBoogieTest
 
         public BatchExeResult Execute(string filename, out string expected, out string current)
         {
-            BatchExeResult result = BatchExeResult.SolcError;
             expected = current = null;
 
             try
