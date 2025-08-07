@@ -14,7 +14,7 @@ dotnet --version  # Should show 6.0.428
 ### 2. Build the Project
 ```bash
 # Navigate to project root
-cd /home/g_code/VeriSol-net5.0
+cd /VeriSol-net5.0
 
 # Build the solution
 dotnet build Sources/VeriSol.sln
@@ -25,20 +25,12 @@ The external tools (Boogie, Corral) need .NET runtime:
 
 ```bash
 # Install .NET runtime for external tools
-./dotnet-install.sh --runtime 6.0
-
-# Or install system-wide
-sudo apt install dotnet-runtime-6.0
-```
+./dotnet-install.sh --runtime 8.0
 
 ### 4. Test the Installation
 ```bash
 # Run the test script
-./test_verisol.sh
-
-# Or run manually
-dotnet Sources/VeriSol/bin/Debug/VeriSol.dll Test/regressions/AssertTrue.sol AssertTrue
-```
+./scripts/assert_software_is_working.sh
 
 ## Architecture
 
@@ -68,8 +60,4 @@ Test/
 
 ```bash
 dotnet Sources/VeriSol/bin/Debug/VeriSol.dll contract.sol ContractName
-```
-
-```bash
-dotnet Sources/SolToBoogieTest/bin/Debug/SolToBoogieTest.dll Test/
 ```
