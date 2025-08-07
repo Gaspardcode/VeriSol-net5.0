@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidityAST", "SolidityAST\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoogieAST", "BoogieAST\BoogieAST.csproj", "{332778F9-6DEB-41E1-A96D-BB8FDF6E020C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidityCFG", "SolidityCFG\SolidityCFG.csproj", "{757411ED-83E4-49C3-8150-07E51A4A5CB6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolToBoogieTest", "SolToBoogieTest\SolToBoogieTest.csproj", "{D67677A3-5505-4D98-B3C7-7A9CAAFE8A13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeriSol", "VeriSol\VeriSol.csproj", "{07B6675E-BAF3-4F53-AE91-937C1F24BACD}"
