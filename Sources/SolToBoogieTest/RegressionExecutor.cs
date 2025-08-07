@@ -19,7 +19,6 @@ namespace SolToBoogieTest
     {
         private string solcPath;
         private string testDirectory;
-        private string configDirectory;
         private string recordsDir;
         private ILogger logger;
         private string testPrefix;
@@ -28,10 +27,8 @@ namespace SolToBoogieTest
 
         public enum BatchExeResult { Success, SolcError, SolToBoogieError, BoogieCompilationError, OtherException };
 
-        public RegressionExecutor(string testDirectory, string configDirectory, string recordsDir, ILogger logger, string testPrefix = "")
+        public RegressionExecutor(string testDirectory, string recordsDir, ILogger logger, string testPrefix = "")
         {
-            this.testDirectory = testDirectory;
-            this.configDirectory = configDirectory;
             this.recordsDir = recordsDir;
             this.logger = logger;
             this.testPrefix = testPrefix;
@@ -190,10 +187,16 @@ namespace SolToBoogieTest
                 return false;
             }
 
+            if (boogieContent.Contains("error"))
+            {
+                Console.WriteLine($"\t*** Error: Boogie translation went wrong {actualOutFile} ");
+                return false;
+            }
+
             // Basic syntax check: should contain "procedure" and "implementation"
             if (!boogieContent.Contains("procedure") || !boogieContent.Contains("implementation"))
             {
-                Console.WriteLine($"\t*** Warning: Boogie file {actualOutFile} may have syntax issues");
+                Console.WriteLine($"\t*** Warning: Boogie file {actualOutFile} has syntax issues");
                 return false;
             }
 

@@ -38,7 +38,6 @@ Sources/
 ├── SolToBoogie/          # Translation engine
 ├── SolidityAST/          # Solidity AST parsing
 ├── BoogieAST/            # Boogie AST generation
-├── SolidityCFG/          # Control flow graph 
 ├── ExternalToolsManager/  # Solc management
 └── SolToBoogieTest/      # Test suite 
 ```

@@ -22,21 +22,20 @@ namespace SolToBoogieTest
             }
 
             // Original regression test logic
-            if (args.Length < 2)
+            if (args.Length < 1)
             {
-                Console.WriteLine("Usage: dotnet run <testDirectory> <configDirectory> [testPrefix]");
-                Console.WriteLine("   or: dotnet run test-solidity05");
+                Console.WriteLine("Usage: dotnet <testDirectory> [testPrefix]");
+                Console.WriteLine("   or: dotnet test-solidity05");
                 return 1;
             }
 
             string testDirectory = args[0];
-            string configDirectory = args[1];
-            string testPrefix = args.Length > 2 ? args[2] : "";
+            string testPrefix = args.Length > 1 ? args[1] : "";
 
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
             ILogger logger = loggerFactory.CreateLogger("VeriSol");
 
-            RegressionExecutor executor = new RegressionExecutor(testDirectory, configDirectory, testDirectory, logger, testPrefix);
+            RegressionExecutor executor = new RegressionExecutor(testDirectory, testDirectory, logger, testPrefix);
             return executor.BatchExecute();
         }
         
